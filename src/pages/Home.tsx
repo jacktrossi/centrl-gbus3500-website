@@ -3,8 +3,8 @@ import { Link } from 'react-router';
 import { CloseCta } from '../components/CloseCta';
 import { FaqList } from '../components/FaqList';
 import { Marquee } from '../components/Marquee';
+import { MotionLoop } from '../components/MotionLoop';
 import { GrowthMock, OpsMock, SupportMock } from '../components/Mocks';
-import { ParticleField } from '../components/ParticleField';
 import { PromptStage } from '../components/PromptStage';
 import { Seo } from '../components/Seo';
 import { TaglineReveal } from '../components/TaglineReveal';
@@ -46,7 +46,9 @@ export function Home() {
             </a>
           </div>
         </div>
-        <ParticleField />
+        <div className="hero-motion" aria-hidden="true">
+          <MotionLoop name="hero" />
+        </div>
       </section>
 
       <section className="steps" id="how" aria-label="How Centrl works">
@@ -73,11 +75,13 @@ export function Home() {
       <Marquee />
 
       <section className="statement">
-        <ParticleField variant="horizon" />
         <h2>
           <span className="dim">Your week splits across inbox, calendar, and chat.</span>
           Centrl turns that into one request.
         </h2>
+        <div className="ask-loop" aria-hidden="true">
+          <MotionLoop name="ask" />
+        </div>
         <PromptStage />
       </section>
 
@@ -176,14 +180,17 @@ export function Home() {
             See the list <ArrowRight size={14} aria-hidden="true" />
           </Link>
         </div>
-        <div className="stack-grid">
-          {connections.map((item, index) => (
-            <article key={item.name}>
-              <p className="cell-index">{String(index + 1).padStart(2, '0')}</p>
-              <h3>{item.name}</h3>
-              <p>{item.detail}</p>
-            </article>
-          ))}
+        <div className="stack-motion">
+          <MotionLoop name="connect" />
+          <div className="sr-only">
+            {connections.map((item, index) => (
+              <article key={item.name}>
+                <p>{String(index + 1).padStart(2, '0')}</p>
+                <h3>{item.name}</h3>
+                <p>{item.detail}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
