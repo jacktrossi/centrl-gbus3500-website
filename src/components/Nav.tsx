@@ -95,12 +95,25 @@ export function Nav() {
     return () => document.body.classList.remove('menu-open');
   }, [mobileOpen]);
 
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMobileOpen(false);
+        buttonRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [mobileOpen]);
+
   const closeMobile = () => {
     setMobileOpen(false);
     buttonRef.current?.focus();
   };
 
   return (
+    <>
     <header className="nav">
       <Link to="/" className="brand" aria-label="Centrl home">
         <Mark />
@@ -133,32 +146,32 @@ export function Nav() {
         {mobileOpen ? <X size={18} aria-hidden="true" /> : <List size={18} aria-hidden="true" />}
         <span className="sr-only">{mobileOpen ? 'Close menu' : 'Open menu'}</span>
       </button>
-
-      {mobileOpen ? (
-        <div id={panelId} className="mobile-panel">
-          <p className="mobile-label">Features</p>
-          {featureItems.map((item) => (
-            <Link key={item.to} to={item.to} onClick={closeMobile}>
-              {item.title}
-            </Link>
-          ))}
-          <p className="mobile-label">Resources</p>
-          {resourceItems.map((item) => (
-            <Link key={item.to} to={item.to} onClick={closeMobile}>
-              {item.title}
-            </Link>
-          ))}
-          <Link to="/pricing" onClick={closeMobile}>
-            Pricing
-          </Link>
-          <Link to="/about" onClick={closeMobile}>
-            About
-          </Link>
-          <Link to="/contact" className="cta" onClick={closeMobile}>
-            Start with Centrl
-          </Link>
-        </div>
-      ) : null}
     </header>
+    {mobileOpen ? (
+      <div id={panelId} className="mobile-panel">
+        <p className="mobile-label">Features</p>
+        {featureItems.map((item) => (
+          <Link key={item.to} to={item.to} onClick={closeMobile}>
+            {item.title}
+          </Link>
+        ))}
+        <p className="mobile-label">Resources</p>
+        {resourceItems.map((item) => (
+          <Link key={item.to} to={item.to} onClick={closeMobile}>
+            {item.title}
+          </Link>
+        ))}
+        <Link to="/pricing" onClick={closeMobile}>
+          Pricing
+        </Link>
+        <Link to="/about" onClick={closeMobile}>
+          About
+        </Link>
+        <Link to="/contact" className="cta" onClick={closeMobile}>
+          Start with Centrl
+        </Link>
+      </div>
+    ) : null}
+    </>
   );
 }
