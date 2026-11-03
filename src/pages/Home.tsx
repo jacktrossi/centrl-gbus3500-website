@@ -22,7 +22,7 @@ export function Home() {
       <div className="announce-row">
         <Link to="/features" className="announce">
           <span className="pill">New</span>
-          Agents that carry the work, not only the conversation
+          <span>Agents that carry the work, not only the conversation</span>
           <ArrowRight size={14} aria-hidden="true" />
         </Link>
       </div>
@@ -180,12 +180,14 @@ export function Home() {
             See the list <ArrowRight size={14} aria-hidden="true" />
           </Link>
         </div>
-        <div className="stack-motion">
-          <MotionLoop name="connect" />
-          <div className="sr-only">
+        <div className="stack-slot">
+          <div className="stack-motion" aria-hidden="true">
+            <MotionLoop name="connect" />
+          </div>
+          <div className="stack-grid">
             {connections.map((item, index) => (
               <article key={item.name}>
-                <p>{String(index + 1).padStart(2, '0')}</p>
+                <p className="cell-index">{String(index + 1).padStart(2, '0')}</p>
                 <h3>{item.name}</h3>
                 <p>{item.detail}</p>
               </article>
