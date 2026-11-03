@@ -3,8 +3,8 @@ import { Link } from 'react-router';
 import { CloseCta } from '../components/CloseCta';
 import { FaqList } from '../components/FaqList';
 import { Marquee } from '../components/Marquee';
+import { AgentThread } from '../components/AgentThread';
 import { GrowthMock, OpsMock, SupportMock } from '../components/Mocks';
-import { ParticleField } from '../components/ParticleField';
 import { PromptStage } from '../components/PromptStage';
 import { Seo } from '../components/Seo';
 import { TaglineReveal } from '../components/TaglineReveal';
@@ -46,7 +46,7 @@ export function Home() {
             </a>
           </div>
         </div>
-        <ParticleField />
+        <AgentThread />
       </section>
 
       <section className="steps" id="how" aria-label="How Centrl works">
@@ -73,7 +73,6 @@ export function Home() {
       <Marquee />
 
       <section className="statement">
-        <ParticleField variant="horizon" />
         <h2>
           <span className="dim">Your week splits across inbox, calendar, and chat.</span>
           Centrl turns that into one request.

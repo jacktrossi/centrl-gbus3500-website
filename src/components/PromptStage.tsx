@@ -1,5 +1,6 @@
-import { ArrowRight, CalendarBlank, ChatCircle, Megaphone, Plus, Wrench, type Icon } from '@phosphor-icons/react';
+import { ArrowUp, CalendarBlank, ChatCircle, Megaphone, Plus, Wrench, type Icon } from '@phosphor-icons/react';
 import { useEffect, useRef, useState } from 'react';
+import { Mark } from './Mark';
 
 type AskId = 'support' | 'growth' | 'ops' | 'schedule';
 
@@ -54,7 +55,9 @@ export function PromptStage() {
   const select = (next: AskId) => {
     window.clearTimeout(timer.current);
     setAsk(next);
-    setPhase('idle');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setPhase('reading');
+    timer.current = window.setTimeout(() => setPhase('ready'), reduce ? 0 : 640);
   };
 
   return (
@@ -65,7 +68,7 @@ export function PromptStage() {
         </button>
         <p>{current.request}</p>
         <button type="button" className="send" aria-label="Preview what Centrl prepares" onClick={run}>
-          <ArrowRight size={16} aria-hidden="true" />
+          <ArrowUp size={16} weight="bold" aria-hidden="true" />
         </button>
       </div>
       <div className="chips" role="group" aria-label="Lines of work">
@@ -87,15 +90,15 @@ export function PromptStage() {
         })}
       </div>
       <div className="preview" aria-live="polite">
-        {phase === 'idle' ? (
-          <p className="preview-hint">Choose a line, then preview the work Centrl prepares.</p>
-        ) : null}
-        {phase === 'reading' ? <p className="preview-hint">Reading the tools you already use.</p> : null}
-        {phase === 'ready' ? (
-          <>
-            <p className="preview-label">Preview</p>
-            <p>{current.result}</p>
-          </>
+        {phase === 'idle' ? <p className="preview-hint">Choose a line. Centrl prepares the work.</p> : null}
+        {phase === 'reading' || phase === 'ready' ? (
+          <div className="assistant">
+            <p className="assistant-name">
+              <Mark size={14} />
+              Centrl
+            </p>
+            <p>{phase === 'reading' ? 'Reading the tools you already use.' : current.result}</p>
+          </div>
         ) : null}
       </div>
     </div>
