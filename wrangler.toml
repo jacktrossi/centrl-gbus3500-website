@@ -1,0 +1,4 @@
+# Cloudflare Pages project for https://centrl.rossinetwork.com
+name = "centrl"
+compatibility_date = "2026-11-03"
+pages_build_output_dir = "dist"

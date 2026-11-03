@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page not found | Centrl</title>
+    <meta name="description" content="That page is not on the Centrl site." />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <style>
+      @font-face {
+        font-family: "Geist Variable";
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: swap;
+        src: url("/fonts/geist.woff2") format("woff2");
+      }
+      :root { color-scheme: dark; }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: #0b0b0b;
+        color: #f4f4f4;
+        font-family: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+      }
+      .frame {
+        width: min(1120px, 100%);
+        min-height: 100vh;
+        margin: 0 auto;
+        border-left: 1px solid rgba(255,255,255,0.12);
+        border-right: 1px solid rgba(255,255,255,0.12);
+        padding: 22px 20px 80px;
+      }
+      a { color: inherit; text-decoration: none; }
+      .brand { display: inline-flex; align-items: center; gap: 8px; font-weight: 520; letter-spacing: -0.03em; }
+      main { padding-top: 72px; }
+      .code { font-family: ui-monospace, monospace; letter-spacing: 0.14em; color: #9a9a9a; font-size: 12px; }
+      h1 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 540; letter-spacing: -0.045em; line-height: 1.02; margin: 12px 0; }
+      p { color: #b5b5b5; max-width: 36rem; }
+      .row { display: flex; gap: 10px; margin-top: 22px; }
+      .cta, .ghost {
+        display: inline-flex; align-items: center; min-height: 36px; padding: 0 14px; border-radius: 999px; font-size: 14px;
+      }
+      .cta { background: #f4f4f4; color: #0b0b0b; }
+      .ghost { border: 1px solid rgba(255,255,255,0.22); }
+      :focus-visible { outline: 2px solid #f4f4f4; outline-offset: 3px; }
+    </style>
+  </head>
+  <body>
+    <div class="frame">
+      <a class="brand" href="/">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15.6 6.6a6.1 6.1 0 1 0 .15 10.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path>
+          <circle cx="17.55" cy="12" r="1.2" fill="currentColor"></circle>
+        </svg>
+        Centrl
+      </a>
+      <main>
+        <p class="code">404</p>
+        <h1>This page is not on the map.</h1>
+        <p>The link may be old, or the address may be mistyped.</p>
+        <div class="row">
+          <a class="cta" href="/">Back home</a>
+          <a class="ghost" href="/contact">Contact</a>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
